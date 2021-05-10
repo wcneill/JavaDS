@@ -1,9 +1,9 @@
-public class Node<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>> {
 
-    Node<T> left, right;
+    BinarySearchTree<T> left, right;
     T data;
 
-    public Node(T data){
+    public BinarySearchTree(T data){
         this.data = data;
     }
 
@@ -13,7 +13,7 @@ public class Node<T extends Comparable<T>> {
 
         if (cmp < 0 || cmp == 0) {
             if (left == null) {
-                left = new Node<>(value);
+                left = new BinarySearchTree<>(value);
             }
             else {
                 left.insert(value);
@@ -21,7 +21,7 @@ public class Node<T extends Comparable<T>> {
         }
         else {
             if (right == null){
-                right = new Node<>(value);
+                right = new BinarySearchTree<>(value);
             }
             else {
                 right.insert(value);
@@ -29,7 +29,7 @@ public class Node<T extends Comparable<T>> {
         }
     }
 
-    public boolean contains(Node<T> root, T value) {
+    public boolean contains(BinarySearchTree<T> root, T value) {
 
         if (root == null){
             return false;
@@ -57,5 +57,27 @@ public class Node<T extends Comparable<T>> {
             right.printInOrder();
         }
     }
+
+    public static void main(String[] args) {
+        BinarySearchTree<String> stringTree = new BinarySearchTree<>("Hello");
+        stringTree.insert("World,");
+        stringTree.insert("My");
+        stringTree.insert("Name");
+        stringTree.insert("is");
+        stringTree.insert("Wesley!");
+
+        stringTree.printInOrder();
+
+        BinarySearchTree<Integer> intTree = new BinarySearchTree<>(22);
+        intTree.insert(13);
+        intTree.insert(22);
+        intTree.insert(19);
+        intTree.insert(-21);
+        intTree.insert(-50);
+
+        intTree.printInOrder();
+    }
+
+
 
 }
