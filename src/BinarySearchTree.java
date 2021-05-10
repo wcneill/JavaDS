@@ -29,11 +29,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-    public boolean contains(BinarySearchTree<T> root, T value) {
-
-        if (root == null){
-            return false;
-        }
+    public boolean contains(T value) {
 
         int cmp = data.compareTo(value);
 
@@ -41,10 +37,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return true;
         }
         else if (cmp < 0) {
-            return left.contains(root, value);
+            if (left == null) {
+                return false;
+            }
+            else {
+                return left.contains(value);
+            }
         }
         else {
-            return right.contains(root, value);
+            if (right == null) {
+                return false;
+            }
+            else {
+                return right.contains(value);
+            }
+
         }
     }
 
@@ -59,14 +66,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public static void main(String[] args) {
-        BinarySearchTree<String> stringTree = new BinarySearchTree<>("Hello");
-        stringTree.insert("World,");
-        stringTree.insert("My");
-        stringTree.insert("Name");
-        stringTree.insert("is");
-        stringTree.insert("Wesley!");
-
-        stringTree.printInOrder();
 
         BinarySearchTree<Integer> intTree = new BinarySearchTree<>(22);
         intTree.insert(13);
@@ -75,9 +74,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
         intTree.insert(-21);
         intTree.insert(-50);
 
+        Integer searchFor = new Integer(33);
+        System.out.printf("The tree contains %d: %b \n", searchFor, intTree.contains(searchFor));
         intTree.printInOrder();
     }
-
-
-
 }
